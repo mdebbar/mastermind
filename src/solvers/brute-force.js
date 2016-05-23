@@ -1,42 +1,38 @@
-import { isGuessOk } from '../utils'
+import Guess from '../guess'
 
-function randomGuess(holeCount, colorCount) {
-  return new Array(holeCount).fill(0).map(
-    () => Math.floor(Math.random() * colorCount)
-  )
-}
+/**
+ * Returns a stateless function that spits out guesses based on the passed history.
+ */
+export default function createSolver(holes, colors) {
 
-function nextGuess(guess, colorCount) {
-  var result = guess.slice()
-  var i = guess.length
-  var remainder = 1
-  while (remainder > 0) {
-    i--
-    result[i] += remainder
-    remainder = 0
-    if (result[i] >= colorCount) {
-      result[i] = 0
-      remainder = 1
+  function nextGuess(guess) {
+    var result = guess.slice()
+    var i = guess.length
+    var remainder = 1
+    while (remainder > 0) {
+      i--
+      result[i] += remainder
+      remainder = 0
+      if (result[i] >= colors) {
+        result[i] = 0
+        remainder = 1
+      }
     }
+    return result
   }
-  return result
-}
 
-function nextValidGuess(guess, colorCount, history) {
-  var newGuess = guess
-  while (!isGuessOk(newGuess, history)) {
-    newGuess = nextGuess(newGuess, colorCount)
+  function nextValidGuess(guess, history) {
+    var newGuess = guess
+    while (!Guess.matchesHistory(newGuess, history)) {
+      newGuess = nextGuess(newGuess)
+    }
+    return newGuess
   }
-  return newGuess
-}
 
-// TODO: we need to stop when there is no possible solution.
-export default function* solve(holeCount, colorCount) {
-  const history = []
-  var guess = randomGuess(holeCount, colorCount)
-  while (true) {
-    var score = yield guess
-    history.push({ guess, score })
-    guess = nextValidGuess(guess, colorCount, history)
+  return function solve(history) {
+    const lastGuess = history && history.length > 0
+      ? history[history.length - 1].guess
+      : Guess.random(holes, colors)
+    return nextValidGuess(lastGuess, history)
   }
 }

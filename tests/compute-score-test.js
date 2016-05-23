@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { computeScore } from '../src/utils'
+import Guess from '../src/guess'
 
 const COMBINATIONS = [
    /*  guess */  /* correct */     /* score */
@@ -19,16 +19,10 @@ const COMBINATIONS = [
   [[1, 0, 2, 3], [3, 1, 0, 2], { red: 0, white: 4 }],
 ]
 
-describe('computeScore', () => {
+describe('Guess.computeScore', () => {
   it('knows correct number of reds and whites', () => {
     COMBINATIONS.forEach(([guess, correct, score]) => {
-      expect(computeScore(guess, correct)).to.deep.eq(score)
-    })
-  })
-
-  it('works with strings', () => {
-    COMBINATIONS.forEach(([guess, correct, score]) => {
-      expect(computeScore(guess.join(''), correct.join(''))).to.deep.eq(score)
+      expect(Guess.computeScore(guess, correct)).to.deep.eq(score)
     })
   })
 })
