@@ -6,17 +6,16 @@ import Guess from '../guess'
 export default function createSolver(holes, colors) {
 
   function nextGuess(guess) {
-    var result = guess.slice()
-    var i = guess.length
+    var result = new Array(guess.length)
     var remainder = 1
-    while (remainder > 0) {
-      i--
-      result[i] += remainder
+    for (let i = guess.length - 1; i >= 0; i--) {
+      var newPeg = guess[i] + remainder
       remainder = 0
-      if (result[i] >= colors) {
-        result[i] = 0
+      if (newPeg >= colors) {
+        newPeg = 0
         remainder = 1
       }
+      result[i] = newPeg
     }
     return result
   }
