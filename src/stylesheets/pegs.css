@@ -1,0 +1,35 @@
+.peg-row {
+  overflow: hidden;
+}
+
+.peg {
+  border-radius: 50%;
+  float: left;
+  height: 20px;
+  margin: 0 0.5em;
+  width: 20px;
+}
+
+.peg.red {
+  background-color: red;
+}
+
+.peg.purple {
+  background-color: purple;
+}
+
+.peg.blue {
+  background-color: blue;
+}
+
+.peg.green {
+  background-color: green;
+}
+
+.peg.yellow {
+  background-color: yellow;
+}
+
+.peg.pink {
+  background-color: pink;
+}

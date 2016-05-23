@@ -1,4 +1,4 @@
-import Guess from '../guess'
+import Guess from './guess'
 
 /**
  * Returns a stateless function that spits out guesses based on the passed history.

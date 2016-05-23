@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import Guess from '../src/guess'
+import Guess from '../src/solvers/guess'
 
 describe('Guess.matchesHistory', () => {
   it('accepts any guess if history is empty', () => {

@@ -1,0 +1,9 @@
+.history-entry {
+  overflow: hidden;
+}
+
+.history-pegs,
+.history-score {
+  float: left;
+  margin: 0.5em;
+}

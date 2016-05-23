@@ -1,0 +1,17 @@
+.score .red,
+.score .white {
+  border: 1px solid #888;
+  border-radius: 3px;
+  float: left;
+  height: 20px;
+  margin: 0 0.25em;
+  width: 4px;
+}
+
+.score .red {
+  background-color: red;
+}
+
+.score .white {
+  background-color: white;
+}
